@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Run project
+        run: |
+          cd /home/ubuntu/django-notes-app
+          git pull origin master
+
       # Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v3.3.0
