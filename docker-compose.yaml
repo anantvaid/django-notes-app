@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - myapp-network
+
+  django:
+    build:
+      context: .
+    container_name: django-app
+    command: gunicorn myapp.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+    networks:
+      - myapp-network
+    expose:
+      - "8000"  # Expose port 8000 for internal communication
+
+  frontend:
+    build:
+      context: ./mynotes
+    container_name: nginx-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+    networks:
+      - myapp-network
+
+volumes:
+  mysql_data:
+
+networks:
+  myapp-network:
+    driver: bridge

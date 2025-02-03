@@ -1,10 +1,14 @@
-FROM node:8
+# Use the official Nginx image from the Docker Hub
+FROM nginx:alpine
 
-WORKDIR /app/
-COPY . /app/
+# Copy the contents of the build directory to the Nginx html directory
+COPY build /usr/share/nginx/html
 
-RUN npm install
+# Expose port 80
+EXPOSE 80
 
-EXPOSE 3000
+# Copy custom Nginx config file
+COPY nginx-default.conf /etc/nginx/conf.d/default.conf
 
-CMD ["npm","start"]
+# Start Nginx when the container has started
+CMD ["nginx", "-g", "daemon off;"]
