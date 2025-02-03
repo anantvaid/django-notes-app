@@ -14,7 +14,7 @@ services:
     build:
       context: .
     container_name: django-app
-    command: gunicorn myapp.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn notesapp.wsgi:application --bind 0.0.0.0:8000
     depends_on:
       - db
     networks:
@@ -38,4 +38,4 @@ volumes:
 
 networks:
   myapp-network:
-    driver: bridge
+    driver: bridge`
