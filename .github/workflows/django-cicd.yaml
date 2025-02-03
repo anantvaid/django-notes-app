@@ -21,15 +21,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Build Docker image
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/django-todo:latest .
-        
-      # Push Docker image to Docker Hub
-      - name: Push Docker image
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/django-todo:latest
+      # Build and push the Docker image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .  # The context for the build (root of your repo)
+          file: ./Dockerfile  # Path to your Dockerfile (if not in root)
+          push: true  # Push the image to Docker Hub
+          tags: ${{ secrets.DOCKER_USERNAME }}/django-todo:latest
 
       # Deploy using Docker Compose
       - name: Deploy with Docker Compose
