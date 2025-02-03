@@ -35,6 +35,6 @@ jobs:
       - name: Deploy with Docker Compose
         run: |
           cd /home/ubuntu/django-notes-app
-          docker-compose pull  # Pull the latest image
-          docker-compose down  # Stop and remove the containers
-          docker-compose up -d  # Start the containers in detached mode
+          docker compose pull  # Pull the latest image
+          docker compose down  # Stop and remove the containers
+          docker compose up -d  # Start the containers in detached mode
