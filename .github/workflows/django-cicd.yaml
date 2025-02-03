@@ -17,7 +17,7 @@ jobs:
       - name: Run project
         run: |
           cd /home/ubuntu/django-notes-app
-          git pull origin master
+          git pull origin main
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
