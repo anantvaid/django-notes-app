@@ -24,10 +24,10 @@ services:
     expose:
       - "8000"  # Expose port 8000 for internal communication
 
-  frontend:
+  proxy:
     build:
-      context: ./mynotes
-    container_name: nginx-frontend
+      context: ./proxy
+    container_name: nginx-proxy
     ports:
       - "80:80"
     depends_on:

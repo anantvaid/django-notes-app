@@ -26,6 +26,3 @@ COPY . /app/
 
 # Expose the port the app runs on
 EXPOSE 8000
-
-# Run Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "notesapp.wsgi:application"]

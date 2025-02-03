@@ -1,9 +1,6 @@
 # Use the official Nginx image from the Docker Hub
 FROM nginx:alpine
 
-# Copy the contents of the build directory to the Nginx html directory
-COPY build /usr/share/nginx/html
-
 # Expose port 80
 EXPOSE 80
 
